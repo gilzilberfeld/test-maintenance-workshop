@@ -1,5 +1,6 @@
 /target/
-!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
 
 ### STS ###
 .apt_generated
@@ -25,3 +26,7 @@
 /.nb-gradle/
 *.jar
 *.class
+
+### Eclipse ###
+/bin
+/target
