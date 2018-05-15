@@ -30,4 +30,8 @@ public class CalculatorController {
 		return calculator.getLastValueFor(user);
 	}
 	
+	@RequestMapping(value = "/currentUser", method = RequestMethod.GET)
+	public String getCurrentUser() {
+		return calculator.getCurrentUser();
+	}
 }

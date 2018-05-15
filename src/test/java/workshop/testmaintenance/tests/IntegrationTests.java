@@ -1,6 +1,6 @@
 package workshop.testmaintenance.tests;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -110,11 +110,32 @@ public class IntegrationTests{
 		String result = calc.getDisplay();
 		assertEquals("-2", result);
 	}
+	
 	@Test
 	@Category(Isolation.class)
-	public void DependentOnLoggedOnUser() {
+	public void DependentOnLoggedOnUser() throws Exception {
 		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-		// “5”,”+”,"
+		MvcResult currentUserResult = 
+				mockMvc.perform(
+						get("/calculator/currentUser"))
+						.andReturn();
+
+
+		if (currentUserResult.getResponse()
+				.getContentAsString()
+				.contains("Gil"))
+		{
+			mockMvc.perform(
+					post("/calculator/press").param("key", "+"));
+			mockMvc.perform(
+					post("/calculator/press").param("key", "3"));
+			mockMvc.perform(get("/calculator/display"))
+			.andExpect(status().isOk())
+			.andExpect(jsonPath("$.display").value("3"))
+			.andReturn();
+		}
+		else
+			fail("Wrong user");
 	}
 
 
@@ -166,7 +187,7 @@ public class IntegrationTests{
 		.andReturn();
 	}
 
-	//TODO
+
 	@Test
 	@Category (Flaky.class)
 	public void DependingOnFile() {

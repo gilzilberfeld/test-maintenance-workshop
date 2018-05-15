@@ -20,4 +20,8 @@ public class Calculator {
 		return "-1";
 	}
 
+	public String getCurrentUser() {
+		return "Gil";
+	}
+
 }

@@ -39,23 +39,27 @@ public class UnitTests {
 		assertEquals("2", result);
 	}
 
-	//TODO
 	@Test
 	@Category(Isolation.class)
-	public void SomethingWithMemory(){
-		// Maybe with spring injected @bean
-		fail();
+	public void displayOnlyIfUserIsLoggedIn(){
+		Calculator calc = new Calculator();
+		if (calc.getCurrentUser() != null)
+			assertEquals("0",calc.getDisplay());
 	}
 	
-	//TODO
+	@Value
+	private String memory;
+	
 	@Test
 	@Category({Logic.class, DifferentType.class})
-	public void DependingOnConfiguration() {
-		// read based on flag from configuration
-		// Coming out of error?
-		// Reset?
-		// then if/else do something
-		fail();
+	public void restoreMemoryAndContinue() {
+		Calculator calculator = new Calculator();
+		String lastStoredValue = calculator.getLastValueFor("Gil");
+		if (lastStoredValue == memory) {
+			calculator.press("2");
+			String result = calculator.getDisplay();
+			assertEquals("12", result);
+		}
 	}
 
 	@Test
