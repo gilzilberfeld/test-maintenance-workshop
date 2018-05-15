@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Isolation;
 import workshop.testmaintenance.*;
 import workshop.testmaintenance.categories.WrongPlace;
@@ -47,7 +48,7 @@ public class UnitTests {
 			assertEquals("0",calc.getDisplay());
 	}
 	
-	@Value
+	@Value("memory")
 	private String memory;
 	
 	@Test
