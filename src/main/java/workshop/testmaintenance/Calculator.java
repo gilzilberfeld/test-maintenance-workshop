@@ -18,20 +18,20 @@ public class Calculator {
 	public UserRepository userRepository;
 	
 	public void press(String key) {
-		if (key=="C")
+		if (key.equals("C"))
 			display = "";
-		else
-			if (key == "+") {
+		else {
+			if (key.equals("+")) {
 				lastOperation = OperationType.Plus;	
 				lastArgument =  Integer.parseInt(display);
 				newArgument = true;
 			} else {
-				if (key =="/") {
+				if (key.equals("/")) {
 					lastOperation = OperationType.Div;	
 					lastArgument =  Integer.parseInt(display);
 					newArgument = true;
 				}
-				else if (key == "=") {
+				else if (key.equals("=")) {
 					int currentArgument = Integer.parseInt(display);
 					if (lastOperation == OperationType.Plus) {
 						display = Integer.toString(lastArgument + currentArgument);
@@ -53,10 +53,11 @@ public class Calculator {
 					display += key;
 				}
 			}
+		}
 	}
 
 	public String getDisplay() {
-		if (display == "")
+		if (display.equals(""))
 			return "0";
 		if (display.length() > 5)
 			return "E";
