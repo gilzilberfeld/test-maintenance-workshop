@@ -1,36 +1,33 @@
 package workshop.testmaintenance;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping ("/calculator")
 public class CalculatorController {
-	private Calculator calculator;
+	@Autowired private Calculator calculator;
 	
-	public CalculatorController() {
-		calculator = new Calculator();
-	}
-	
-	@RequestMapping(value ="/press", method = RequestMethod.POST)
-	public void press(@RequestParam(value = "key") String key) {
+	@PostMapping(value ="/press")
+	public ResponseEntity<?> press(@RequestParam(value = "key") String key) {
 		calculator.press(key);
+		return ResponseEntity.ok(null);
 	}
 	
-	@RequestMapping(value = "/display", method = RequestMethod.GET) 
-	public DisplayResult getDisplay() {
+	@GetMapping(value = "/display") 
+	public ResponseEntity<String> getDisplay() {
 		
-		DisplayResult dr = new DisplayResult();
-		dr.setDisplay(calculator.getDisplay());
-		dr.setStatus("OK");
-		
-		return dr;
+		return new ResponseEntity<String>(calculator.getDisplay(), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/stored", method = RequestMethod.GET)
-	public String getStoredValueForUser(@RequestParam(value = "user") String user) {
-		return calculator.getLastValueFor(user);
+	@PostMapping(value = "/restore")
+	public ResponseEntity<?> getStoredValueForUser(@RequestParam(value = "user") String user) {
+		calculator.getLastValueFor(user);
+		return ResponseEntity.ok(null);
 	}
 	
-	@RequestMapping(value = "/currentUser", method = RequestMethod.GET)
+	@GetMapping(value = "/currentUser")
 	public String getCurrentUser() {
 		return calculator.getCurrentUser();
 	}

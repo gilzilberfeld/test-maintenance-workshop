@@ -1,19 +1,29 @@
 package workshop.testmaintenance.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+import java.util.Optional;
+
+import org.hibernate.criterion.Example;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Isolation;
-import workshop.testmaintenance.*;
-import workshop.testmaintenance.categories.WrongPlace;
+
+import workshop.testmaintenance.Calculator;
+import workshop.testmaintenance.User;
+import workshop.testmaintenance.UserRepository;
 import workshop.testmaintenance.categories.Assertions;
 import workshop.testmaintenance.categories.DifferentType;
 import workshop.testmaintenance.categories.Information;
 import workshop.testmaintenance.categories.Logic;
 import workshop.testmaintenance.categories.Unreadable;
+import workshop.testmaintenance.categories.WrongPlace;
 
 
 public class UnitTests {
@@ -54,8 +64,19 @@ public class UnitTests {
 	@Test
 	@Category({Logic.class, DifferentType.class})
 	public void restoreMemoryAndContinue() {
+		
 		Calculator calculator = new Calculator();
-		String lastStoredValue = calculator.getLastValueFor("Gil");
+		MockUserRepository mockUserRepository = new MockUserRepository();
+		User mockUser = new User();
+		mockUser.setName("Gil");
+		mockUser.setMemory(2L);
+		mockUserRepository.mockUser = mockUser;
+		
+		calculator.userRepository = mockUserRepository;
+
+		calculator.getLastValueFor("Gil");
+		
+		String lastStoredValue = calculator.getDisplay();
 		if (lastStoredValue == memory) {
 			calculator.press("2");
 			String result = calculator.getDisplay();
