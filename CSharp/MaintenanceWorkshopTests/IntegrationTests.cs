@@ -6,14 +6,21 @@ using System.Threading.Tasks;
 using System;
 using System.Net;
 using System.Web;
+using CalculatorServer;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using ApprovalTests.Reporters;
+using ApprovalTests;
 
 namespace MaintenanceWorkshopTests
 {
+    
     [TestClass]
     public class IntegrationTests
     {
         private static TestServerFactory factory;
         private static HttpClient client;
+
 
         [ClassInitialize]
         public static void Setup(TestContext tc)
@@ -87,6 +94,33 @@ namespace MaintenanceWorkshopTests
             await client.PostAsync(url, null);
             response = await client.GetAsync("calculator/display");
             Assert.AreEqual("3", response.Content.ReadAsStringAsync().Result);
+        }
+
+        [TestMethod]
+        [TestCategory("Isolation")]
+        public async Task RestoreByUser()
+        {
+            var url = "calculator/restore?user=Gil";
+            await client.PostAsync(url, null);
+            var response = await client.GetAsync("calculator/display");
+            Assert.AreEqual("2", response.Content.ReadAsStringAsync().Result);
+        }
+
+        [Ignore]
+        [TestMethod]
+        [UseReporter(typeof(DiffReporter))]
+        public void GetWithApprovals()
+        {
+            string result = GetSync("calculator/display");
+            Approvals.Verify(result);
+
+        }
+
+        private static string GetSync(string url)
+        {
+            Task<HttpResponseMessage> task =
+                            Task.Run<HttpResponseMessage>(async () => await client.GetAsync(url));
+            return task.Result.Content.ReadAsStringAsync().Result;
         }
 
         private static string GetEncodedKey(string sign)

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.438
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculatorServer", "CalculatorServer\CalculatorServer.csproj", "{BF4C9D42-602B-4022-AB9A-F820B7DF7ADA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculatorServerCore", "CalculatorServer\CalculatorServerCore.csproj", "{BF4C9D42-602B-4022-AB9A-F820B7DF7ADA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaintenanceWorkshopTests", "MaintenanceWorkshopTests\MaintenanceWorkshopTests.csproj", "{3C1D9224-A224-41CD-A92E-49E2A82950CC}"
 EndProject

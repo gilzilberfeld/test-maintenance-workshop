@@ -35,9 +35,8 @@ namespace CalculatorServer.Controllers
             Calculator.Reset();
         }
 
-        //[Route("/restore")]
-        [HttpPost("/restore{user}")]
-        public void Post_Restore( string user)
+        [HttpPost("restore")]
+        public void Post_Restore([FromQuery] string user)
         {
             calculator.GetLastValueFor(user);
         }

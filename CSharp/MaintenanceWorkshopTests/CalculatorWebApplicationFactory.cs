@@ -9,6 +9,7 @@ namespace MaintenanceWorkshopTests
     public class CalculatorWebApplicationFactory<TStartup>
     : WebApplicationFactory<TStartup> where TStartup : class
     {
+   
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.ConfigureServices(services =>
@@ -28,7 +29,7 @@ namespace MaintenanceWorkshopTests
 
                 // Build the service provider.
                 var sp = services.BuildServiceProvider();
-
+                
                 // Create a scope to obtain a reference to the database
                 // context (UserDbContext).
                 using (var scope = sp.CreateScope())
@@ -39,6 +40,7 @@ namespace MaintenanceWorkshopTests
                     // Ensure the database is created.
                     db.Database.EnsureCreated();
 
+                    DatabaseInitializer.Initialize(db);
                 }
             });
         }

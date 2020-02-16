@@ -23,143 +23,29 @@ public class MockUserRepository implements UserRepository {
 		return (Optional<S>) Optional.of(mockUser);
 	}
 
-	@Override
-	public List<User> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<User> findAll(Sort sort) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<User> findAllById(Iterable<Long> ids) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <S extends User> List<S> saveAll(Iterable<S> entities) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void flush() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public <S extends User> S saveAndFlush(S entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void deleteInBatch(Iterable<User> entities) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteAllInBatch() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public User getOne(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <S extends User> List<S> findAll(Example<S> example) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <S extends User> List<S> findAll(Example<S> example, Sort sort) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Page<User> findAll(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <S extends User> S save(S entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Optional<User> findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean existsById(Long id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public long count() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(User entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteAll(Iterable<? extends User> entities) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteAll() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public <S extends User> Page<S> findAll(Example<S> example, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <S extends User> long count(Example<S> example) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public <S extends User> boolean exists(Example<S> example) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	/* Not used by tests*/ 
+	@Override public List<User> findAll() { return null; }
+	@Override public List<User> findAll(Sort sort) { return null; }
+	@Override public List<User> findAllById(Iterable<Long> ids) {	return null;	}
+	@Override public <S extends User> List<S> saveAll(Iterable<S> entities) { return null; }
+	@Override public void flush() {	}
+	@Override public <S extends User> S saveAndFlush(S entity) { return null;	}
+	@Override public void deleteInBatch(Iterable<User> entities) {	}
+	@Override public void deleteAllInBatch() {	}
+	@Override public User getOne(Long id) { return null;}
+	@Override public <S extends User> List<S> findAll(Example<S> example) {	return null;}
+	@Override public <S extends User> List<S> findAll(Example<S> example, Sort sort) { return null;	}
+	@Override public Page<User> findAll(Pageable pageable) { return null; }
+	@Override public <S extends User> S save(S entity) { return null;	}
+	@Override public Optional<User> findById(Long id) { return null;	}
+	@Override public boolean existsById(Long id) { return false; 	}
+	@Override public long count() {	return 0;	}
+	@Override public void deleteById(Long id) {	}
+	@Override public void delete(User entity) {	}
+	@Override public void deleteAll(Iterable<? extends User> entities) {}
+	@Override public void deleteAll() {	}
+	@Override public <S extends User> Page<S> findAll(Example<S> example, Pageable pageable) {return null;	}
+	@Override public <S extends User> long count(Example<S> example) { return 0;}
+	@Override public <S extends User> boolean exists(Example<S> example) { return false; }
 
 }

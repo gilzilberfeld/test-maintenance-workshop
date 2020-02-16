@@ -22,6 +22,7 @@ import workshop.testmaintenance.categories.Assertions;
 import workshop.testmaintenance.categories.DifferentType;
 import workshop.testmaintenance.categories.Information;
 import workshop.testmaintenance.categories.Logic;
+import workshop.testmaintenance.categories.Redundant;
 import workshop.testmaintenance.categories.Unreadable;
 import workshop.testmaintenance.categories.WrongPlace;
 
@@ -58,9 +59,6 @@ public class UnitTests {
 			assertEquals("0",calc.getDisplay());
 	}
 	
-	@Value("memory")
-	private String memory;
-	
 	@Test
 	@Category({Logic.class, DifferentType.class})
 	public void restoreMemoryAndContinue() {
@@ -71,16 +69,13 @@ public class UnitTests {
 		mockUser.setName("Gil");
 		mockUser.setMemory(2L);
 		mockUserRepository.mockUser = mockUser;
-		
 		calculator.userRepository = mockUserRepository;
-
 		calculator.getLastValueFor("Gil");
-		
 		String lastStoredValue = calculator.getDisplay();
-		if (lastStoredValue == memory) {
-			calculator.press("2");
+		if (lastStoredValue.equals("2")) {
+			calculator.press("3");
 			String result = calculator.getDisplay();
-			assertEquals("12", result);
+			assertEquals("23", result);
 		}
 	}
 
@@ -104,8 +99,8 @@ public class UnitTests {
 	}
 
 	@Test
-	@Category (Information.class)
-	public void RedundnatTest1() {
+	@Category (Redundant.class)
+	public void TwoNumbers() {
 		Calculator c = new Calculator();
 		c.press("1");
 		c.press("2");
@@ -115,7 +110,7 @@ public class UnitTests {
 
 	@Test
 	@Category (Information.class)
-	public void RedundnatTest2() {
+	public void AnotherTwoNumbers() {
 		Calculator c = new Calculator();
 		c.press("9");
 		c.press("5");
@@ -126,7 +121,7 @@ public class UnitTests {
 	@Ignore
 	@Test
 	@Category (Information.class)
-	public void RedundnatTest4() {
+	public void OtherTwoNumbers() {
 		Calculator c = new Calculator();
 		c.press("7");
 		c.press("3");
@@ -134,20 +129,19 @@ public class UnitTests {
 		assertEquals(result, "73");
 	}
 	
+	@Ignore
 	@Test
 	@Category (WrongPlace.class)
-	// long running test in the unit test section
 	public void orderOfOperations() {
-		/// This is a long test
 		Calculator c = new Calculator();
 		c.press("1");
 		c.press("+");
-		c.press("2");
-		c.press("*");
+		c.press("8");
+		c.press("/");
 		c.press("4");
 		c.press("=");
 		String result = c.getDisplay();
-		assertEquals(result, "9");
+		assertEquals(result, "3");
 	}
 
 }

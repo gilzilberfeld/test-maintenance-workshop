@@ -66,8 +66,10 @@ public class Calculator {
 
 	public void getLastValueFor(String userName) {
 		User user = getUserByName(userName);
-		if (user != null)
+		if (user != null) {
 			display = user.getMemory().toString();
+			shouldReset = false;
+		}
 	}
 
 	private User getUserByName(String userName) {

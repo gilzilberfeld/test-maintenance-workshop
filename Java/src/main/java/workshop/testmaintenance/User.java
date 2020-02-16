@@ -41,4 +41,8 @@ public class User {
 		return this.memoryValue;
 	}
 	
+	public void updateFromAnother(User anotherUser) {
+		this.name = anotherUser.getName();
+		this.memoryValue = anotherUser.getMemory();
+	}
 }

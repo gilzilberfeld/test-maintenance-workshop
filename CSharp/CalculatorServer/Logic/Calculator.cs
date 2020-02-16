@@ -87,24 +87,18 @@ namespace CalculatorServer
         {
             User user = GetUserByName(userName);
             if (user != null)
+            {
                 display = user.Memory.ToString();
+                shouldReset = false;
+            }
         }
 
-        // @Autowired
-        //public UserRepository userRepository;
+       
         private User GetUserByName(String userName)
         {
-            //     User criterion = new User();
-            //     criterion.setName(userName);
-            //     criterion.setMemory(null);
-
-            //     Example<User> filter = Example.of(criterion);
-            //     Optional<User> user = userRepository.findOne(filter);
-            //     if (user.isPresent())
-            //         return user.get();
-            //     else
-            return null;
-        }
+            return db.Users.Where(user => user.Name.Equals(userName)).First();
+              
+         }
 
         public static void Reset()
         {

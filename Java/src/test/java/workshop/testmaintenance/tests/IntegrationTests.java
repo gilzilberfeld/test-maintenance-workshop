@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
@@ -73,7 +74,6 @@ public class IntegrationTests{
 	@Test
 	@Category(DifferentType.class)
 	public void DivisionByZero() throws Exception {
-		// Check message instead of display
 		mockMvc.perform(
 				post("/calculator/press").param("key", "9"));
 		mockMvc.perform(
@@ -90,6 +90,7 @@ public class IntegrationTests{
 	}
 
 	@Test
+	@Ignore
 	@Category (Flaky.class)
 	public void CalculationsWithLastValueSaved() throws Exception {
 		
@@ -195,6 +196,7 @@ public class IntegrationTests{
 		// “5”,”+”,"
 	}
 
+	@Ignore
 	@Test
 	@Category(Unreadable.class)
 	public void MultiParameterCalculation() throws Exception {
@@ -248,7 +250,7 @@ public class IntegrationTests{
 
 	@Test
 	@Category (Isolation.class)
-	public void pressinOpKeyDoesntChangeDisplay() throws Exception {
+	public void pressingOpKeyDoesntChangeDisplay() throws Exception {
 		mockMvc.perform(
 				post("/calculator/press").param("key", "6"));
 		mockMvc.perform(

@@ -416,3 +416,5 @@ ASALocalRun/
 healthchecksdb
 
 # End of https://www.gitignore.io/api/eclipse,visualstudio
+*.class
+*.class
